@@ -31,7 +31,7 @@ void loop()
     return;
   }
   
-  // Mostra UID na serial
+  // Printa o ID do cartão na serial
   Serial.print("UID da tag :");
   String jorge= "";
   byte letra;
