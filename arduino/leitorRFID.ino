@@ -16,7 +16,7 @@ void setup()
   mfrc522.PCD_Init();   // Inicia MFRC522
   
   Serial.println("Aproxime o seu cartao do leitor...");
-  Serial.println(); 
+  Serial.println();
 }
 void loop() 
 {
@@ -48,7 +48,7 @@ void loop()
   
   if (jorge.substring(1) == "44 39 59 52") //cartao
   {
-    Serial.println("Voce acaba de dar R$ 3,45 a Paulo Câmara");
+    Serial.println("Cartão Identificado");
     Serial.println();
     delay(3000);
      
@@ -56,12 +56,13 @@ void loop()
  
   if (jorge.substring(1) == "14 2C F7 E9") //Chaveiro
   {
-    Serial.println("Ah, então é você que tem passe livre");
+    Serial.println("Chaveiro Identificado");
     Serial.println();
     delay(3000);
-    
-  }
-  
- }
+    }
+else {
+  Serial.println("esse cartão não é valido");  
+}
+}
  
  
