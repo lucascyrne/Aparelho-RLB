@@ -3,6 +3,7 @@
 
 
 // Pinagens
+// uso do #define pois utiliza menos espaço na memoria 
 #define SS_PIN 10
 #define RST_PIN 9
 MFRC522 mfrc522(SS_PIN, RST_PIN);   //instancia
