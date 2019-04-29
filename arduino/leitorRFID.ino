@@ -11,7 +11,7 @@ char st[20];
 
 void setup() 
 {
-  Serial.begin(9600);   // Inicia comunicação Serial em 9600 baud rate
+  Serial.begin(9600);   // Inicia comunicação Serial
   SPI.begin();          // Inicia comunicação SPI bus
   mfrc522.PCD_Init();   // Inicia MFRC522
   
@@ -48,7 +48,7 @@ void loop()
   
   if (jorge.substring(1) == "44 39 59 52") //cartao
   {
-    Serial.println("Cartão Identificado");
+    Serial.println("Identified card");
     Serial.println();
     delay(3000);
      
@@ -56,12 +56,14 @@ void loop()
  
   if (jorge.substring(1) == "14 2C F7 E9") //Chaveiro
   {
-    Serial.println("Chaveiro Identificado");
+    Serial.println("Identified Keychain");
     Serial.println();
     delay(3000);
     }
 else {
-  Serial.println("esse cartão não é valido");  
+  Serial.println("This card is not valid");  
+  Serial.println();
+  delay(3000);
 }
 }
  
