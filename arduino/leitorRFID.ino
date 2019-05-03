@@ -16,7 +16,8 @@ void setup()
   SPI.begin();          // Inicia comunicação SPI bus
   mfrc522.PCD_Init();   // Inicia MFRC522
   
-  Serial.println("Aproxime o seu cartao do leitor...");
+  Serial.println("Welcome!");
+  Serial.println("Put your card in the reader:");
   Serial.println();
 }
 void loop() 
@@ -33,7 +34,7 @@ void loop()
   }
   
   // Printa o ID do cartão na serial
-  Serial.print("UID da tag :");
+  Serial.print("CARD ID:");
   String jorge= "";
   byte letra;
   for (byte i = 0; i < mfrc522.uid.size; i++) 
@@ -44,7 +45,7 @@ void loop()
      jorge.concat(String(mfrc522.uid.uidByte[i], HEX));
   }
   Serial.println();
-  Serial.print("Mensagem : ");
+  Serial.print("Message:");
   jorge.toUpperCase();
   
   if (jorge.substring(1) == "44 39 59 52") //cartao
@@ -53,15 +54,7 @@ void loop()
     Serial.println();
     delay(3000);
      
-  }
- 
-  if (jorge.substring(1) == "14 2C F7 E9") //Chaveiro
-  {
-    Serial.println("Identified Keychain");
-    Serial.println();
-    delay(3000);
-    }
-else {
+}else {
   Serial.println("This card is not valid");  
   Serial.println();
   delay(3000);
