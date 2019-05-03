@@ -1,9 +1,10 @@
-import serial # you need to install the pySerial :pyserial.sourceforge.net
+import serial
 import time
-# your Serial port should be different!
-arduino = serial.Serial('/dev/tty.usbmodem1411', 9600)
+
+arduino = serial.Serial('PORT', 9600)
 
 def onOffFunction():
+  
   command = raw_input("Type something..: (on/ off / bye )");
 	if command =="on":
 		print "The LED is on..."

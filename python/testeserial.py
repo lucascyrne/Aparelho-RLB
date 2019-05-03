@@ -1,6 +1,7 @@
 import serial
 import time
-porta = str('/dev/ttyUSB0')
+
+porta = str('PORTA')
 baud_rate = 9600
  
 def verifica_portas():
