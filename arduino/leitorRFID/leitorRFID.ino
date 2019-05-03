@@ -31,21 +31,21 @@ void loop()
   
   // Printa o ID do cartão na serial
   Serial.print("CARD ID:");
-  String jorge = "";
+  String rlb = "";
   byte letra;
   
   for (byte i = 0; i < mfrc522.uid.size; i++) {
      Serial.print(mfrc522.uid.uidByte[i] < 0x10 ? " 0" : " ");
      Serial.print(mfrc522.uid.uidByte[i], HEX);
-     jorge.concat(String(mfrc522.uid.uidByte[i] < 0x10 ? " 0" : " "));
-     jorge.concat(String(mfrc522.uid.uidByte[i], HEX));
+     rlb.concat(String(mfrc522.uid.uidByte[i] < 0x10 ? " 0" : " "));
+     rlb.concat(String(mfrc522.uid.uidByte[i], HEX));
   }
   
   Serial.println();
   Serial.print("Message:");
-  jorge.toUpperCase();
+  rlb.toUpperCase();
   
-  if (jorge.substring(1) == "44 39 59 52") //cartao{
+  if (rlb.substring(1) == "44 39 59 52") // ID cartão {
     Serial.println("Identified card");
     Serial.println();
     delay(3000);
