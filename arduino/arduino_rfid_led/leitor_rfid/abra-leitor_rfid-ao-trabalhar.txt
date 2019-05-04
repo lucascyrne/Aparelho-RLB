@@ -1,2 +1,0 @@
-Não abra "inotopyserial_led"
-abra "leitor_rfid"
