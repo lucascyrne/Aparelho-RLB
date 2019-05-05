@@ -4,7 +4,7 @@ CODE - C (Writing)
 
 MAIN CODE DIR: Aparelho-RLB/arduino/rfid_and_led
 
-PROCESSO (MAIN CODE):
+PROCESSO (MAIN CODE(Arduino Wiring language)):
 
 - defino as bibliotecas 
 - defino as pinagens do RFID
