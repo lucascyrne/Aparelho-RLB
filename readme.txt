@@ -1,9 +1,11 @@
-PROTÓTIPO - DESENVOLVIMENTO
+﻿<< PROTÓTIPO - VERSÃO ALFA - DESENVOLVIMENTO >>
 
-CÓDIGO - C (Writing) e Python
+CODE - C (Writing)
 
-1) Bate cartão
-2) Arduíno lê os dados e passa pro python alterando o sistema
-3) Python retorna os dados (LED)
+DIR: Aparelho-RLB/arduino/rfid_and_led
+
+PROCESSO:
+
+1) 
 
 
