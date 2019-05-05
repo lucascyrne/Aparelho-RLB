@@ -40,7 +40,9 @@ void setup()
  
 void loop() 
 {
-  leitorRfid(); // lê e armazena o UID do cartão na variável "conteudo"]
+  String conteudo;
+  
+  conteudo = leitorRfid(); // lê e armazena o UID do cartão na variável "conteudo"]
    
   Serial.println();
   //booleana que valida a tag lida
@@ -66,9 +68,9 @@ void loop()
     tagVerificada = true;
     //este metodo acende o led azul (autorizado)
     tagValida();
-    delay(4000)
+    delay(4000);
     leitorRfid();
-    if conteudo == "" {
+    if(conteudo == "") {
       tagVazia();
       delay(6000);
       mensageminicial();
@@ -97,9 +99,9 @@ void loop()
     tagVerificada = true;
     //este metodo acende o led azul (autorizado) 
     tagValida();
-    delay(4000)
+    delay(4000);
     leitorRfid();
-    if conteudo == "" {
+    if(conteudo == "") {
       tagVazia();
       delay(6000);
       mensageminicial();
@@ -148,7 +150,7 @@ void mensageminicial()
   Serial.println();
 }
 
-void leitorRfid()
+String leitorRfid()
 {
   //Aguarda proximidade do cartão / tag
   if ( ! mfrc522.PICC_IsNewCardPresent()) 
@@ -176,6 +178,8 @@ void leitorRfid()
      conteudo.concat(String(mfrc522.uid.uidByte[i] < 0x10 ? " 0" : " "));
      conteudo.concat(String(mfrc522.uid.uidByte[i], HEX));
   }
+
+  return conteudo;
 }
 
 //Metodo chamado quando a tag é valida e cadastrada
@@ -201,7 +205,7 @@ void tagVazia()
   setColor(255,128,0);
 }
 
-void setColor(int vermelho, int verde, int blue)
+void setColor(int vermelho, int verde, int azul)
 {
   analogWrite(ledVermelho, vermelho);
   analogWrite(ledVerde, verde);
