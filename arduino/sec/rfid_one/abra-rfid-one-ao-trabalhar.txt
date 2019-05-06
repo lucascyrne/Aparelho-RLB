@@ -1,2 +1,0 @@
-- NÃO abra "inotopyserial_led" ou "rfid_two"
-- ABRA "rfid_one"

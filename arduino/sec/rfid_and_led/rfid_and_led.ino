@@ -12,7 +12,7 @@
 MFRC522 mfrc522(SS_PIN, RST_PIN);   
 
 //Aqui colocamos as Tags que desejamos autorizar
-String tagsCadastrada[2] ={"24 B4 8B 19","55 FC F9 0D"}; // ATENÇÃO: EDITAR POSTERIORMENTE!!!
+String tagsCadastrada[2] ={"44 39 59 52","14 2C F7 E9"}; // ATENÇÃO: EDITAR POSTERIORMENTE!!!
 
  //Pinos do LED RGB
  int ledVermelho =2;
@@ -33,16 +33,16 @@ void setup()
   pinMode(ledVermelho, OUTPUT);
   pinMode(ledVerde, OUTPUT);
   pinMode(ledAzul, OUTPUT);
-  
-  //Metodo inicial
-  mensageminicial();
+
 }
  
 void loop() 
 {
+
   String conteudo;
-  
-  conteudo = leitorRfid(); // lê e armazena o UID do cartão na variável "conteudo"]
+
+  //Metodo inicial
+  mensageminicial();
    
   Serial.println();
   //booleana que valida a tag lida
@@ -50,10 +50,7 @@ void loop()
   boolean tagVerificada = false;  
   
   Serial.print("Leitura : ");
-  
-  //coloca o valor da variavel conteudo toda em Maisculo
-  conteudo.toUpperCase();
-  
+    
   //verifica se a tag lida coincide com uma das tags 
   //cadastada no array
  for(int indice = 0; indice < sizeof(tagsCadastrada); indice++){
@@ -74,15 +71,13 @@ void loop()
       tagVazia();
       delay(6000);
       mensageminicial();
-    } else {
-      continue;
-    }
+    } 
     delay(6000);
     
     //Incia o processo novamente
     mensageminicial();
     //limpa a String conteudo para fazer nova leitura
-    conteudo= "";    
+    conteudo = "";    
   }
   
   //if (conteudo.substring(1) == "55 FC F9 0D") //UID 1
@@ -105,8 +100,6 @@ void loop()
       tagVazia();
       delay(6000);
       mensageminicial();
-    } else {
-      continue;
     }
     delay(6000);
     //Incia o processo novamente
@@ -118,7 +111,7 @@ void loop()
   //caso o conteudo não seja "" e a tag Verficada
   //esteja falsa.
   //Informa o usuario que não tem acesso
-  if((tagVerificada == false)&&(conteudo != "")){
+  if((tagVerificada == false)&&((conteudo) != "")) {
     
     //Se ambas condições forem verdadeira 
     //imprime na Serial uma mensagem de negação ao usuario
@@ -140,6 +133,10 @@ void loop()
 //Metodo Inicial que informa ao usuario o que deve ser feito  
 void mensageminicial()
 {
+  
+  conteudo = leitorRfid(); // lê e armazena o UID do cartão na variável "conteudo"
+  
+  while (False) {
   Serial.println();
   Serial.println("Aproxime o seu cartao de leitor");
 
@@ -148,6 +145,7 @@ void mensageminicial()
   digitalWrite(ledVerde, HIGH);
   
   Serial.println();
+  }
 }
 
 String leitorRfid()
@@ -168,6 +166,8 @@ String leitorRfid()
   String conteudo = "";
   //variavel que coletará os bytes lidos
   byte letra;
+  //coloca o valor da variavel conteudo toda em Maisculo
+  conteudo.toUpperCase();
   
   //dentro deste FOR, armazena byte a byte e 
   //concatena na variavel conteudo
@@ -190,7 +190,7 @@ void tagValida()
   digitalWrite(ledVerde, HIGH);
 }
 
-//Metodo chamado quando cartão é retirado da baía 
+
 
 //Metodo chamado quando a tag invalida / desconhecida
 void tagInvalida()
@@ -200,6 +200,8 @@ void tagInvalida()
   digitalWrite(ledVerde, LOW);
 }
 
+
+//Metodo chamado quando cartão é retirado da baía 
 void tagVazia()
 {
   setColor(255,128,0);
