@@ -1,7 +1,7 @@
 import serial
 import time
 
-read = serial.Serial("COM1", baudrate=9600, timeout=1)
+read = serial.Serial("COM7", baudrate=9600, timeout=1)
 
 while 1:
 	read.write(b"...")
