@@ -7,6 +7,9 @@
 #define SS_PIN 10
 #define RST_PIN 9
 MFRC522 mfrc522(SS_PIN, RST_PIN);   //instancia
+
+int led= 9; //será um RGB no futuro 
+int ledt= 10; 
  
 char st[20];
 
@@ -15,6 +18,7 @@ void setup()
   Serial.begin(9600);   // Inicia comunicação Serial
   SPI.begin();          // Inicia comunicação SPI bus
   mfrc522.PCD_Init();   // Inicia MFRC522
+  digitalWrite(ledt, HIGH);
 }
 
 void loop() 
@@ -49,10 +53,14 @@ void loop()
     Serial.println("Identified card");
     Serial.println();
     delay(3000);
+
+    digitalWrite(led, HIGH);
      
 } else {
   Serial.println("This card is not valid");  
   Serial.println();
+
+  digitalWrite(ledt, HIGH);
   delay(3000);
 }
 }
