@@ -8,8 +8,10 @@
 #define RST_PIN 9
 MFRC522 mfrc522(SS_PIN, RST_PIN);   //instancia
 
-int led= 9; //será um RGB no futuro 
-int ledt= 10; 
+//Pinos do LED RGB
+int ledVermelho =2;
+int ledVerde =3;
+int ledAzul =4;
  
 char st[20];
 
@@ -18,11 +20,54 @@ void setup()
   Serial.begin(9600);   // Inicia comunicação Serial
   SPI.begin();          // Inicia comunicação SPI bus
   mfrc522.PCD_Init();   // Inicia MFRC522
-  digitalWrite(ledt, HIGH);
+
+  //Inicia os pinos do LED RGB como saida
+  pinMode(ledVermelho, OUTPUT);
+  pinMode(ledVerde, OUTPUT);
+  pinMode(ledAzul, OUTPUT);
 }
+  //Metodo chamado quando a tag é valida e cadastrada
+  void tagValida()
+  {
+    digitalWrite(ledAzul,LOW);
+    digitalWrite(ledVermelho, LOW);
+    digitalWrite(ledVerde, HIGH);
+  }
+
+  //Metodo chamado quando a tag invalida / desconhecida
+  void tagInvalida()
+  {
+    digitalWrite(ledAzul,LOW);
+    digitalWrite(ledVermelho,  HIGH);
+    digitalWrite(ledVerde, LOW);
+  }
+
+   void setColor(int vermelho, int verde, int azul)
+  {
+    analogWrite(ledVermelho, vermelho);
+    analogWrite(ledVerde, verde);
+    analogWrite(ledAzul, azul);  
+  }
+
+  //Metodo chamado quando cartão é retirado da baía 
+  void tagVazia()
+  {
+    setColor(255,128,0);
+  }
+
+  //Metodo chamado quando a baía está livre
+  void baiaLivre()
+  {
+    digitalWrite(ledAzul,LOW);
+    digitalWrite(ledVermelho,  LOW);
+    digitalWrite(ledVerde, HIGH);
+  }
 
 void loop() 
 {
+  
+  baiaLivre();
+  
   // Verifica existência de novos cartoes
   if ( ! mfrc522.PICC_IsNewCardPresent()) {
     return;
@@ -49,20 +94,17 @@ void loop()
   Serial.print("Message:");
   rlb.toUpperCase();
   
-  if (rlb.substring(1) == "44 39 59 52") // ID cartão {
+  if (rlb.substring(1) == "44 39 59 52") { // ID cartão 
     Serial.println("Identified card");
+    tagValida();
     Serial.println();
     delay(3000);
-
-    digitalWrite(led, HIGH);
      
-} else {
-  Serial.println("This card is not valid");  
-  Serial.println();
-
-  digitalWrite(ledt, HIGH);
-  delay(3000);
+  } else {
+    Serial.println("This card is not valid");  
+    tagInvalida();
+    Serial.println();
+    
+    delay(3000);
+  }
 }
-}
- 
- 
