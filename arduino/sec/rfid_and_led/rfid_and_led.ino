@@ -111,7 +111,7 @@ void loop()
   //caso o conteudo não seja "" e a tag Verficada
   //esteja falsa.
   //Informa o usuario que não tem acesso
-  if((tagVerificada == false)&&((conteudo) != "")) {
+  if((tagVerificada == false)&&((conteudo) != ""))   {
     
     //Se ambas condições forem verdadeira 
     //imprime na Serial uma mensagem de negação ao usuario

@@ -36,6 +36,7 @@ void setup()
       return false;
     }
   }
+
   
   //Metodo chamado quando a tag é valida e cadastrada
   void tagValida()
@@ -75,11 +76,10 @@ void setup()
   }
 
 void loop() 
-{
-  
-  //tagVazia(); //simulando o modelo de baía permanente
+{ 
+  //tagVazia(); // Simulando o modelo de baía permanente
   baiaLivre();
-  
+
   verificarCartao();
 
   // Lê o cartao
@@ -92,7 +92,7 @@ void loop()
   String rlb = "";
   byte letra;
   
-  for (byte i = 0; i < mfrc522.uid.size; i++) {
+    for (byte i = 0; i < mfrc522.uid.size; i++) {
      Serial.print(mfrc522.uid.uidByte[i] < 0x10 ? " 0" : " ");
      Serial.print(mfrc522.uid.uidByte[i], HEX);
      rlb.concat(String(mfrc522.uid.uidByte[i] < 0x10 ? " 0" : " "));
@@ -103,36 +103,44 @@ void loop()
   Serial.print("Message:");
   rlb.toUpperCase();
   
-  if(rlb.substring(1) == "44 39 59 52") { // ID cartão 
+  while(rlb.substring(1) == "44 39 59 52") { // ID cartão 
     Serial.println("Cartão Identificado");
     Serial.println("Seja bem vindo, Carlos Sampaio!");
     Serial.println("Acesso Liberado");
     tagValida();
     Serial.println();
-    delay(3000);
-    verificarCartao();
-    while (verificarCartao() == false) {
-    //while(rlb.substring(1) != "44 39 59 52") {
-      Serial.println("Usuário desconectado");  
-      Serial.println();
+    delay(2000);
+    verificarCartao();  
+    if(verificarCartao()) {
+      false;
+      rlb = "";
       tagVazia();
-    }    
+      delay(4000);
+      baiaLivre();
+      return;
+    } else {
+      return;
+    }
   }
 
-  if(rlb.substring(1) == "14 2C F7 E9") { // ID cartão 
-    Serial.println("Cartão Identificado");
-    Serial.println("Seja bem vindo, Ferraz!");
+  while(rlb.substring(1) == "14 2C F7 E9") { // ID cartão 
+     Serial.println("Cartão Identificado");
+    Serial.println("Seja bem vindo,Ferraz!");
     Serial.println("Acesso Liberado");
     tagValida();
     Serial.println();
-    delay(3000);
-    verificarCartao();
-    while(verificarCartao() == false) {
-    //while(rlb.substring(1) != "14 2C F7 E9") {
-      Serial.println("Usuário Desconectado");  
-      Serial.println();
+    delay(2000);
+    verificarCartao();  
+    if(verificarCartao()) {
+      false;
+      rlb = "";
       tagVazia();
-    }    
+      delay(4000);
+      baiaLivre();
+      return;
+    } else {
+      return;
+    }
   }
 
   if(rlb.substring(1) != "44 39 59 52" && "14 2C F7 E9") { // ID cartão 
@@ -141,8 +149,8 @@ void loop()
     tagInvalida();
     Serial.println();
     delay(2000); 
+    rlb = "";
+    verificarCartao();
   }
 
-  rlb = "";
-  verificarCartao();
 }
