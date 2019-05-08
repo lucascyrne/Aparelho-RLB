@@ -9,9 +9,9 @@
 MFRC522 mfrc522(SS_PIN, RST_PIN);   //instancia
 
 //Pinos do LED RGB
-int ledVermelho =2;
-int ledVerde =3;
-int ledAzul =4;
+int ledVermelho =3;
+int ledVerde =5;
+int ledAzul =6;
  
 char st[20];
 
@@ -29,14 +29,16 @@ void setup()
   //Metodo chamado quando a tag é valida e cadastrada
   void tagValida()
   {
-    digitalWrite(ledAzul,LOW);
+    Serial.println("led azul");
+    digitalWrite(ledAzul,HIGH);
     digitalWrite(ledVermelho, LOW);
-    digitalWrite(ledVerde, HIGH);
+    digitalWrite(ledVerde, LOW);
   }
 
   //Metodo chamado quando a tag invalida / desconhecida
   void tagInvalida()
   {
+    Serial.print("led vermelho");
     digitalWrite(ledAzul,LOW);
     digitalWrite(ledVermelho,  HIGH);
     digitalWrite(ledVerde, LOW);
