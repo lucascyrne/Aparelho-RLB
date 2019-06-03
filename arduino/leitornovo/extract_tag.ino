@@ -1,4 +1,4 @@
-void extract_tag() {
+unsigned extract_tag() {
   uint8_t msg_head = buffer[0];
   uint8_t *msg_data = buffer + 1; // 10 byte => data contains 2byte version + 8byte tag
   uint8_t *msg_data_version = msg_data;
