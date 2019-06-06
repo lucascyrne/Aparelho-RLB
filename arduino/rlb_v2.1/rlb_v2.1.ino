@@ -32,7 +32,6 @@ Keypad customKeypad = Keypad(makeKeymap(hexaKeys), rowPins, colPins, ROWS, COLS)
 void setup() {
 
   Serial.begin(9600);
-  Serial.println("Leitor RFID RDM6300\n"); //Informacoes iniciais
   RFID.begin(9600);
 
 }
@@ -53,6 +52,7 @@ void loop() {
     uint8_t c = RFID.read();
     if (RDM6300.decode(c))    {
       Serial.print("ID TAG: ");
+      Serial.println();
       //Mostra os dados no serial monitor
       for (int i = 0; i < 5; i++)      {
         Serial.print(Payload[i], HEX);

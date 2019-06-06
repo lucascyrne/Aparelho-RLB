@@ -1,13 +1,13 @@
 const _ = require("lodash");
-const validarCpf = require("validar-cpf");
+//const validarCpf = require("validar-cpf");
 const express = require("express");
 const orm = require("orm");
 
 const PORT = 8080;
-const DB_USER = "root";
-const DB_PASS = "";
-const DB_HOST = "127.0.0.1";
-const DB_NAME = "projectvectra";
+const DB_USER = "u185329633_rlb";
+const DB_PASS = "admindb";
+const DB_HOST = "127.0.0.1:3306";
+const DB_NAME = "u185329633_rlb";
 
 const app = express();
 

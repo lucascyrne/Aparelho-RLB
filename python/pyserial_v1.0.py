@@ -18,7 +18,7 @@ while(1):
 
     userInput = input('Get data points?')
 
-    if userInput == 'y':
+    if userInput == 'e':
         for i in range(0, numPoints):
             data = getValues()
             dataFile.write(data + ' ')

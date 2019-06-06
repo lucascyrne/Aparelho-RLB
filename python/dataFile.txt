@@ -1,2 +1,2 @@
 Leitor RFID RDM6300
-  ID TAG: 29 0 9C 3D EE        2 
+  A B 3 6 ID TAG: 29 0 44 1F B5     
