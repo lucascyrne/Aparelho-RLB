@@ -1,0 +1,2 @@
+Leitor RFID RDM6300
+  0 0 0 8 * 7 8 9 
