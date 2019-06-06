@@ -27,3 +27,4 @@ while(1):
         print(dataList)
 
         dataFile.close()
+        break
