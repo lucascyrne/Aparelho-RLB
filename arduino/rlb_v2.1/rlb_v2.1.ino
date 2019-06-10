@@ -43,6 +43,7 @@ void loop() {
   char customKey = customKeypad.getKey();
 
   if (customKey) {
+    Serial.print("k,");
     Serial.println(customKey);
   }
 
@@ -51,12 +52,10 @@ void loop() {
   while (RFID.available() > 0) {
     uint8_t c = RFID.read();
     if (RDM6300.decode(c))    {
-      Serial.print("ID TAG: ");
-      Serial.println();
       //Mostra os dados no serial monitor
+      Serial.print("r,");
       for (int i = 0; i < 5; i++)      {
         Serial.print(Payload[i], HEX);
-        Serial.print(" ");
       }
       Serial.println();
       delay(1000);

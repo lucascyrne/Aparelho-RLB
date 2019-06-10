@@ -1,7 +1,7 @@
 import serial
 import time
 
-ser = serial.Serial('COM3', baudrate = 9600, timeout = 0.5)
+ser = serial.Serial('COM13', baudrate = 9600, timeout = 0.5)
 time.sleep(2)
 numPoints = 10
 dataList = [0]*numPoints
@@ -24,10 +24,10 @@ def handleValues():
             data = getValues()
             dataFile.write(data + ' ')
             dataList[i] = data
-            data.strip()
+            data.strip(',')
+            time.sleep(2)
 
         print(dataList)
-        print(data)
 
         break
 
@@ -36,30 +36,21 @@ def read_sensor():
     print('Inicialize com seu cartão.')
     handleValues()
 
-    if 'ID' in dataList:
-        card_id = 0
-        pos = dataList.index('ID')
-        card_id = pos + 1
-        print(f'ID: {card_id}')
+
     
 
 read_sensor()
 dataFile.close()
 
 
-""" # while(1):
+""" while(1):
 while(ser.isOpen()):
-
     userInput = input('Get data points? (type "e") \n')
-
     if userInput == 'e':
         for i in range(0, numPoints):
             data = getValues()
             dataFile.write(data + ' ')
             dataList[i] = data
-
         print(dataList)
-
         dataFile.close()
         break """
-
