@@ -1,2 +1,1 @@
-Leitor RFID RDM6300
-  A B 3 6 ID TAG: 29 0 44 1F B5     
+          
