@@ -1,7 +1,7 @@
 import serial
 import time
 
-ser = serial.Serial('COM3', baudrate = 9600, timeout = 1)
+ser = serial.Serial('COM3', baudrate = 9600, timeout = 0.5)
 time.sleep(2)
 numPoints = 10
 dataList = [0]*numPoints
@@ -20,15 +20,16 @@ def handleValues():
     # while(1):
     while(ser.isOpen()):
 
-        for i in range(0,  numPoints):
+        for i in range(0, numPoints):
             data = getValues()
             dataFile.write(data + ' ')
             dataList[i] = data
             data.strip()
 
         print(dataList)
+        print(data)
 
-        break 
+        break
 
 def read_sensor():
 
@@ -36,19 +37,14 @@ def read_sensor():
     handleValues()
 
     if 'ID' in dataList:
+        card_id = 0
         pos = dataList.index('ID')
         card_id = pos + 1
+        print(f'ID: {card_id}')
     
-    print(f'ID: {card_id}')
-
-
 
 read_sensor()
 dataFile.close()
-
-
-
-
 
 
 """ # while(1):
