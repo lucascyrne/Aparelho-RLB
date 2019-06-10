@@ -47,7 +47,7 @@ read_sensor()
 dataFile.close()
 
 
-""" # while(1):
+""" while(1):
 while(ser.isOpen()):
 
     userInput = input('Get data points? (type "e") \n')
