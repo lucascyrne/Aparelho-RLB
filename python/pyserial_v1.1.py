@@ -6,8 +6,8 @@ ser = serial.Serial('COM13', baudrate = 9600, timeout = 1)
 data = []
 dado = []
 card_id = 0
-btn_data = open('btn_data.txt', 'w')
-cid_data = open('cid_data.txt', 'w')
+btn_data = open('btn_data.txt', 'a+')
+cid_data = open('cid_data.txt', 'a+')
 
 def getValues():
     
@@ -25,14 +25,17 @@ while True:
             print('numberpad identificado')
             btn = dado[1]
             print(btn)
+            
         if dado[0]  == "r":
             print('rfid identificado')
             cid = dado[1]
+            id= []
+            id.append(cid)
+            id.append("\n")
+            cid_data.writelines(id)
+            cid_data.close()
             print(cid)
+            print("Sua Baia foi registrada")
+            break
 
-            
-
-
-w,33,12,
-
-R112312312
+cid_data.close()
