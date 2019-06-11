@@ -1,6 +1,6 @@
 import serial
 import time
-
+import json #utilizar arquivo json para guardar as ids dos usuarios 
 ser = serial.Serial('COM13', baudrate = 9600, timeout = 1)
 
 data = []
@@ -35,6 +35,8 @@ while True:
             cid_data.writelines(id)
             cid_data.close()
             print(cid)
+            """ trocar essa print(cid) posteriormente 
+            pelo nome do usuario que regigtrou a baia  atraves de uma checagem no json"""
             print("Sua Baia foi registrada")
             break
 
