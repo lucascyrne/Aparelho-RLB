@@ -49,25 +49,7 @@ void setup() {
 void loop() {
 
   //LCD
-  
-  vetor[0] = "teste 0"; 
-  vetor[1] = "agora 1"; 
-  int x = 0; 
-  lcd.setCursor(0,0);
-  lcd.print("!!!!**!!!!");
-  lcd.setCursor(5,1);
-  lcd.print("ROLOU");
-  while (x <= 2){
-    delay(2000);
-    lcd.setCursor(0,0);
-    lcd.print(vetor[x]);
-    x++;
-  }
-  //lcd.backlight();
-  //lcd.setCursor(5,2);
-  //lcd.print("DE SILICIO");
-  //lcd.setCursor(0,3);
- //lcd.print("********");
+ 
   
 
   //KEYPAD
