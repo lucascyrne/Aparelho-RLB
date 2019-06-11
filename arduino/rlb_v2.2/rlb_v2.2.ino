@@ -66,6 +66,7 @@ void loop() {
     char user = "";
     user = Serial.read();
     Serial.print("I received: " + user);
+    
   }
 
   // RFID
