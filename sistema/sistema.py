@@ -1,25 +1,33 @@
-import serial
+import serial as ser
 import time
+import json
 
-ser = serial.Serial('COM13', baudrate = 9600, timeout = 1)
+#BANCO DE DADOS
+rlb_db = ''' 
+{
+    "card_id": [
+        {
+            "id": "290441FB5",
+            "nome": "Lucas Cyrne",
+            "baia": "A1",
+            "categoria": "Engenheiro de Software",
+            "login": "",
+            "senha":"",
+            "email":"",
+            "telefone":""
+        }
+    ]
+}
+'''
 
-#VARS
-data = []
-dado = []
-card_id = 0
-btn_data = open('btn_data.txt', 'a+')
-cid_data = open('cid_data.txt', 'a+')
+print('-=' * 40)
+print('Banco de dados disponíveis: ')
+print()
+data = json.loads(rlb_db)
+print(data)
+print('-=' * 40)
 
-#BAIAS
-baias = "b1", "b2", "b3", "b4", "b5"
-print(baias)
-
-#USERS
-users = "Lucas Cyrne", "Bennyson Brecht", "Pedro Vilella"
-users_list = ["","","","",""]
-
-
-print(users)
+ser = ser.Serial('COM13', baudrate = 9600, timeout = 1)
 
 def getValues():
     
@@ -46,28 +54,36 @@ def rdm():
         cid_data.writelines(id)
         cid_data.close()
         print(cid)
-        print("Sua Baia foi registrada")    
+        print("Sua Baia foi registrada")  
+
+#VARS
+data = []
+dado = []
+card_id = 0
+btn_data = open('btn_data.txt', 'a+')
+cid_data = open('cid_data.txt', 'a+')  
 
 while True:
-
+    rdm()
+    keyboard()
     dado = getValues().split(',')
     if dado != '':
 
-    #INICIA PROCEDIMENTO
-    print('Passe o cartão ou insira o nº da baia: ')
+        #INICIA PROCEDIMENTO
+        rdm()
+        if cid == True:
+            ser.write('n')
 
 
 
 
-
-    
-
-    resp = str(input('Deseja continuar? (s/n)'))
-    if resp in 'Ss':
-        print('Sistema continua.')
-    else:
-        break
-
+        resp = str(input('Deseja continuar? (s/n)'))
+        if resp in 'Ss':
+            print('Sistema continua.')
+        else:
+            break
+       
+ 
 
      
 

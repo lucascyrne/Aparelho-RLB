@@ -1,7 +1,7 @@
-import serial
+import serial as sers
 import time
 import json #utilizar arquivo json para guardar as ids dos usuarios 
-ser = serial.Serial('COM13', baudrate = 9600, timeout = 1)
+ser = sers.Serial('COM13', baudrate = 9600, timeout = 1)
 
 data = []
 dado = []

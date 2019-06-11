@@ -1,0 +1,23 @@
+rlb = ''' {
+
+    "card_id": [
+
+        {
+            "id": "290441FB5",
+            "nome": "Lucas Cyrne",
+            "baia": "A1",
+            "categoria": "Designer",
+            "login": "",
+            "senha":"",
+            "email":"",
+            "telefone":""
+    
+        }
+    ]
+}
+'''
+
+data = json.loads(rlb_db)
+
+print(type(data))
+print(data)

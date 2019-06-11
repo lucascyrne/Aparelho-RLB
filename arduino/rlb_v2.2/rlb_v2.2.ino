@@ -7,7 +7,7 @@
 // LCD
 
 // Inicializa o display no endereco 0x27
-LiquidCrystal_I2C lcd(0x3F,2,1,0,4,5,6,7,3, POSITIVE);
+LiquidCrystal_I2C lcd(0x3F, 2, 1, 0, 4, 5, 6, 7, 3, POSITIVE);
 //LiquidCrystal_I2C lcd(0x38,16,2);
 String vetor [10];
 
@@ -26,10 +26,10 @@ const byte ROWS = 4;
 const byte COLS = 4;
 
 char hexaKeys[ROWS][COLS] = {
-  {'1', '2', '3','A'},
-  {'4', '5', '6','B'},
-  {'7', '8', '9','C'},
-  {'*', '0', '#','D'}
+  {'1', '2', '3', 'A'},
+  {'4', '5', '6', 'B'},
+  {'7', '8', '9', 'C'},
+  {'*', '0', '#', 'D'}
 };
 
 byte rowPins[ROWS] = {9, 8, 7, 6};
@@ -42,27 +42,34 @@ void setup() {
 
   Serial.begin(9600);
   RFID.begin(9600);
-  lcd.begin (16,2);
+  lcd.begin (16, 2);
 
 }
 
 void loop() {
 
   //LCD
- 
-  
 
-  //KEYPAD
+  lcd.setCursor(0, 0);
+  lcd.print("cade as ferias?");
+  lcd.setCursor(0, 1);
+  lcd.print("      :/     ");
+  delay(500);
+  lcd.clear();
+  lcd.setCursor(0, 0);
+  lcd.print("");
+  lcd.setCursor(0, 1);
+  lcd.print("");
+  delay(500);
 
-  char customKey = customKeypad.getKey();
-
-  if (customKey) {
-    Serial.print("k,");
-    Serial.println(customKey);
+  if (Serial.available() == "n") {
+    char user = "";
+    user = Serial.read();
+    Serial.print("I received: " + user);
   }
 
   // RFID
-    //Aguarda a aproximacao da tag RFID
+  //Aguarda a aproximacao da tag RFID
   while (RFID.available() > 0) {
     uint8_t c = RFID.read();
     if (RDM6300.decode(c))    {
@@ -75,6 +82,47 @@ void loop() {
       delay(1000);
     }
   }
+
+  //KEYPAD
+
+  char customKey = customKeypad.getKey();
+
+  if (customKey) {
+    Serial.print("k,");
+    Serial.println(customKey);
+  }
+
+  
+
+  
+
+
+
+
+  //
+  //  vetor[0] = "teste 0";
+  //  vetor[1] = "agora 1";
+  //  int x = 0;
+  //  lcd.setCursor(0,0);
+  //  lcd.print("!!!!**!!!!");
+  //  lcd.setCursor(5,1);
+  //  lcd.print("ROLOU");
+  //  while (x <= 2){
+  //    delay(2000);
+  //    lcd.setCursor(0,0);
+  //    lcd.print(vetor[x]);
+  //    x++;
+  //  }
+  //  lcd.backlight();
+  //  lcd.setCursor(5,2);
+  //  lcd.print("DE SILICIO");
+  //  lcd.setCursor(0,3);
+  //  lcd.print("********");
+  //
+
+
+
+
 
 
 }
