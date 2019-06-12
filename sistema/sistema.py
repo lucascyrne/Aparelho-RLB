@@ -1,6 +1,17 @@
 import serial as ser
 import time
 import json
+from mysql.connector import connection
+from mysql.connector import errorcode
+
+
+#conecxao sql 
+cnx = connection.MySQLConnection(user='u185329633_user', password='realob',
+                                 host='localhost,
+                                 database='u185329633_baia')
+cnx = connection.MySQLConnection(user='u185329633_form', password='realob',
+                                 host='localhost,
+                                 database='u185329633_form')
 
 #BANCO DE DADOS
 rlb_db = ''' 
