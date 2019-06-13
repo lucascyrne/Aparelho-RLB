@@ -63,9 +63,10 @@ void loop() {
   delay(500);
 
   if (Serial.available() == "n") {
-    char user = "";
-    user = Serial.read();
-    Serial.print("I received: " + user);
+    delay(100);
+    char user = Serial.read();
+    Serial.print("I received: ");
+    lcd.write(user);
     
   }
 

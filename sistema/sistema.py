@@ -5,7 +5,7 @@ from mysql.connector import connection
 from mysql.connector import errorcode
 
 
-#conecxao sql 
+#BANCO DE DADOS MYSQL
 cnx = connection.MySQLConnection(user='u185329633_user', password='realob',
                                  host='localhost,
                                  database='u185329633_baia')
@@ -13,32 +13,6 @@ cnx = connection.MySQLConnection(user='u185329633_form', password='realob',
                                  host='localhost,
                                  database='u185329633_form')
 
-#BANCO DE DADOS
-rlb_db = ''' 
-{
-    "card_id": [
-        {
-            "id": "290441FB5",
-            "nome": "Lucas Cyrne",
-            "baia": "A1",
-            "categoria": "Engenheiro de Software",
-            "login": "",
-            "senha":"",
-            "email":"",
-            "telefone":""
-        }
-    ]
-}
-'''
-
-print('-=' * 40)
-print('Banco de dados disponíveis: ')
-print()
-data = json.loads(rlb_db)
-print(data)
-print('-=' * 40)
-
-ser = ser.Serial('COM13', baudrate = 9600, timeout = 1)
 
 def getValues():
     
@@ -68,34 +42,12 @@ def rdm():
         print("Sua Baia foi registrada")  
 
 #VARS
-data = []
 dado = []
-card_id = 0
 btn_data = open('btn_data.txt', 'a+')
 cid_data = open('cid_data.txt', 'a+')  
+ser = ser.Serial('COM13', baudrate = 9600, timeout = 1)
+time.sleep(1)
 
 while True:
-    rdm()
-    keyboard()
-    dado = getValues().split(',')
-    if dado != '':
-
-        #INICIA PROCEDIMENTO
-        rdm()
-        if cid == True:
-            ser.write('n')
-
-
-
-
-        resp = str(input('Deseja continuar? (s/n)'))
-        if resp in 'Ss':
-            print('Sistema continua.')
-        else:
-            break
+    
        
- 
-
-     
-
-cid_data.close()
