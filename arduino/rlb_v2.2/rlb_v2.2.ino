@@ -50,25 +50,39 @@ void loop() {
 
   //LCD
 
-  lcd.setCursor(0, 0);
-  lcd.print("cade as ferias?");
-  lcd.setCursor(0, 1);
-  lcd.print("      :/     ");
-  delay(500);
-  lcd.clear();
-  lcd.setCursor(0, 0);
-  lcd.print("");
-  lcd.setCursor(0, 1);
-  lcd.print("");
-  delay(500);
-
-  if (Serial.available() == "n") {
-    delay(100);
-    char user = Serial.read();
-    Serial.print("I received: ");
-    lcd.write(user);
+  if (Serial.available()) {
+    delay(100);  //wait some time for the data to fully be read
+    lcd.clear();
+    while (Serial.available() > 0) {
+      char c = Serial.read();
+      if (c == '\n')
+      lcd.setCursor(0, 1);
+      lcd.write(c);
+    }
     
-  }
+
+  }  
+
+
+  //  if (Serial.available()) {
+  //    delay(100);  //wait some time for the data to fully be read
+  //    lcd.clear();
+  //    while (Serial.available() > 0) {
+  //      char c = Serial.read();
+  //      lcd.write(c);
+  //    }
+
+  //  lcd.setCursor(0, 0);
+  //  lcd.print("cade as ferias?");
+  //  lcd.setCursor(0, 1);
+  //  lcd.print("      :/     ");
+  //  delay(500);
+  //  lcd.clear();
+  //  lcd.setCursor(0, 0);
+  //  lcd.print("");
+  //  lcd.setCursor(0, 1);
+  //  lcd.print("");
+  //  delay(500);
 
   // RFID
   //Aguarda a aproximacao da tag RFID
@@ -86,45 +100,13 @@ void loop() {
   }
 
   //KEYPAD
-
+  
   char customKey = customKeypad.getKey();
-
+  
   if (customKey) {
     Serial.print("k,");
     Serial.println(customKey);
   }
+ 
+} 
 
-  
-
-  
-
-
-
-
-  //
-  //  vetor[0] = "teste 0";
-  //  vetor[1] = "agora 1";
-  //  int x = 0;
-  //  lcd.setCursor(0,0);
-  //  lcd.print("!!!!**!!!!");
-  //  lcd.setCursor(5,1);
-  //  lcd.print("ROLOU");
-  //  while (x <= 2){
-  //    delay(2000);
-  //    lcd.setCursor(0,0);
-  //    lcd.print(vetor[x]);
-  //    x++;
-  //  }
-  //  lcd.backlight();
-  //  lcd.setCursor(5,2);
-  //  lcd.print("DE SILICIO");
-  //  lcd.setCursor(0,3);
-  //  lcd.print("********");
-  //
-
-
-
-
-
-
-}
