@@ -1,17 +1,22 @@
 import serial
 import time
 import json
+
 """ from mysql.connector import connection
 from mysql.connector import errorcode """
 
 
 #BANCO DE DADOS MYSQL
-""" cnx = connection.MySQLConnection(user='u185329633_user', password='realob',
+
+""" 
+
+cnx = connection.MySQLConnection(user='u185329633_user', password='realob',
                                  host='localhost,
                                  database='u185329633_baia')
 cnx = connection.MySQLConnection(user='u185329633_form', password='realob',
                                  host='localhost,
-                                 database='u185329633_form') """
+                                 database='u185329633_form') 
+"""
 
 
 def getValues():
@@ -32,17 +37,18 @@ def keyboard():
 
 def rdm():
     #RDM CODE    
-    if dado[0]  == "r":
-        time.sleep(5)
-        print('rfid identificado')
-        cid = dado[1]
-        id= []
-        id.append(cid)
-        id.append("\n")
-        cid_data.writelines(id)
-        cid_data.close()
-        print(cid)
-        print("Sua Baia foi registrada")  
+    while True:
+        if dado[0]  == "r":
+            time.sleep(5)
+            print('rfid identificado')
+            cid = dado[1]
+            id= []
+            id.append(cid)
+            id.append("\n")
+            cid_data.writelines(id)
+            cid_data.close()
+            print(cid)
+            print("Sua Baia foi registrada")  
 
 #VARS
 dado = []
